@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <title>Нурайнур CRM</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <section class="login" id="loginView">
+    <form class="login-card" id="loginForm">
+      <div class="brand-mark">Н</div>
+      <p class="eyebrow">Модульные дома</p>
+      <h1>Нурайнур CRM</h1>
+      <p class="muted">Заявки из Instagram в одной воронке</p>
+      <label for="password">Пароль</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Войти</button>
+      <p class="error" id="loginError" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <main class="app hidden" id="appView">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Модульные дома</p>
+        <h1>Нурайнур CRM</h1>
+      </div>
+      <div class="toolbar">
+        <label class="search"><span>⌕</span><input id="search" placeholder="Найти клиента или номер"></label>
+        <button class="secondary" id="refreshButton">Обновить</button>
+        <button class="icon-button" id="logoutButton" title="Выйти">↪</button>
+      </div>
+    </header>
+
+    <section class="summary" id="summary"></section>
+    <section class="meta-status" id="metaStatus" aria-live="polite"></section>
+    <section class="board" id="board" aria-label="Воронка продаж"></section>
+  </main>
+
+  <dialog id="leadDialog">
+    <form method="dialog" class="dialog-card" id="leadForm">
+      <button class="dialog-close" value="cancel" aria-label="Закрыть">×</button>
+      <p class="eyebrow" id="dialogStage"></p>
+      <h2 id="dialogName"></h2>
+      <div class="contact-row" id="dialogContacts"></div>
+      <div class="answers" id="dialogAnswers"></div>
+      <label for="dialogStatus">Этап</label>
+      <select id="dialogStatus"></select>
+      <label class="quality-toggle"><input type="checkbox" id="dialogQuality"><span>Качественный клиент</span></label>
+      <div class="dialog-meta-status" id="dialogMetaStatus"></div>
+      <label for="dialogManager">Ответственный</label>
+      <input id="dialogManager" maxlength="100">
+      <label for="dialogAmount">Сумма сделки, ₸</label>
+      <input id="dialogAmount" type="number" min="0" step="1000">
+      <label for="dialogNotes">Комментарий</label>
+      <textarea id="dialogNotes" rows="4" maxlength="5000"></textarea>
+      <div class="dialog-actions">
+        <button class="secondary" value="cancel">Отмена</button>
+        <button id="saveLead" value="default">Сохранить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

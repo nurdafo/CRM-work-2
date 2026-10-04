@@ -1,0 +1,22 @@
+{
+  "name": "nurainur-crm",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "types": "wrangler types",
+    "check": "npm run types && tsc --noEmit && wrangler deploy --dry-run",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "kanban:rebuild": "node scripts/rebuild-kanban.mjs",
+    "kanban:verify": "node scripts/verify-kanban.mjs",
+    "db:local": "wrangler d1 migrations apply nurainur-crm --local",
+    "db:remote": "wrangler d1 migrations apply nurainur-crm --remote"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "typescript": "latest",
+    "wrangler": "latest"
+  }
+}

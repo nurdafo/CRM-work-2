@@ -6,6 +6,18 @@ const summary = document.querySelector("#summary");
 const metaStatus = document.querySelector("#metaStatus");
 const dialog = document.querySelector("#leadDialog");
 const toast = document.querySelector("#toast");
+const passwordInput = document.querySelector("#password");
+const togglePassword = document.querySelector("#togglePassword");
+
+function setPasswordVisible(visible) {
+  passwordInput.type = visible ? "text" : "password";
+  togglePassword.textContent = visible ? "Скрыть пароль" : "Показать пароль";
+  togglePassword.setAttribute("aria-pressed", String(visible));
+}
+
+togglePassword.addEventListener("click", () => {
+  setPasswordVisible(passwordInput.type === "password");
+});
 
 let toastTimer;
 function showToast(message, isError = false) {
@@ -29,11 +41,14 @@ async function api(path, options = {}) {
 }
 
 function showLogin() {
+  setPasswordVisible(false);
   loginView.classList.remove("hidden");
   appView.classList.add("hidden");
 }
 
 function showApp() {
+  setPasswordVisible(false);
+  passwordInput.value = "";
   loginView.classList.add("hidden");
   appView.classList.remove("hidden");
 }
